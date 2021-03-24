@@ -1,0 +1,63 @@
+//input range slider-runnable-track
+//importações
+@use 'reset'
+@use 'colors'
+@use 'mixins'
+@use 'typography'
+
+//body e gerais
+body
+    background: url('../img/bg-pattern.svg') no-repeat
+
+.container
+    @include mixins.container
+
+.center
+    @include mixins.center
+
+//main
+header
+    .container
+        height: 224px
+        background: url('../img/pattern-circles.svg') no-repeat center center
+
+main
+    .container
+        background-color: colors.$white
+        padding: 48px
+        box-shadow: 0px 6px 14px -6px rgba(24, 39, 75, 0.12), 0px 10px 32px -4px rgba(24, 39, 75, 0.1)
+        border-radius: 8px
+
+.main-header
+    @include mixins.mainHeader
+    .price
+        h2,p
+            display: inline
+
+.slider-container
+    width: 100%
+    padding: 48px 0
+
+.slider
+    @include mixins.sliderBar
+
+.slider::-webkit-slider-thumb
+    @include mixins.prefix(appearance, none, webkit)
+    width: 40px
+    height: 40px
+    background: colors.$Primary-color-strong-cyan url('../img/icon-slider.svg') no-repeat center center
+    border-radius: 50%
+    box-shadow: 0px 8px 28px -6px rgba(16, 213, 194, 0.6), 0px 18px 88px -4px rgba(24, 39, 75, 0.14)
+    @include mixins.prefix(transition, .3s, webkit)
+    &:hover
+        cursor: pointer
+        background-color: colors.$Primary-color-soft-cyan
+    &:active
+        background-color: #0B8E81
+
+.slider::-moz-range-thumb
+    width: 40px
+    height: 40px
+    background: colors.$Primary-color-strong-cyan url('../img/icon-slider.svg') no-repeat center center
+    border-radius: 50%
+    box-shadow: 0px 8px 28px -6px rgba(16, 213, 194, 0.6), 0px 18px 88px -4px rgba(24, 39, 75, 0.14)
