@@ -1,35 +1,35 @@
 //input range slider-runnable-track
 //importações
-@use 'reset'
-@use 'colors'
-@use 'mixins'
-@use 'typography'
+@use 'src' as *
 
 //body e gerais
 body
     background: url('../img/bg-pattern.svg') no-repeat
 
 .container
-    @include mixins.container
+    @include container
 
 .center
-    @include mixins.center
+    @include center
 
 //main
 header
+    padding: 0 32px
     .container
-        height: 224px
+        height: 192px
         background: url('../img/pattern-circles.svg') no-repeat center center
 
 main
+    padding: 0 32px
     .container
-        background-color: colors.$white
+        background-color: $white
         padding: 48px
         box-shadow: 0px 6px 14px -6px rgba(24, 39, 75, 0.12), 0px 10px 32px -4px rgba(24, 39, 75, 0.1)
         border-radius: 8px
+        overflow: hidden
 
 .main-header
-    @include mixins.mainHeader
+    @include mainHeader
     .price
         h2,p
             display: inline
@@ -39,25 +39,106 @@ main
     padding: 48px 0
 
 .slider
-    @include mixins.sliderBar
+    @include sliderBar
+    position: relative
 
 .slider::-webkit-slider-thumb
-    @include mixins.prefix(appearance, none, webkit)
+    @include prefix(appearance, none, webkit)
+    position: relative
     width: 40px
     height: 40px
-    background: colors.$Primary-color-strong-cyan url('../img/icon-slider.svg') no-repeat center center
+    background: $Primary-color-strong-cyan url('../img/icon-slider.svg') no-repeat center center
     border-radius: 50%
     box-shadow: 0px 8px 28px -6px rgba(16, 213, 194, 0.6), 0px 18px 88px -4px rgba(24, 39, 75, 0.14)
-    @include mixins.prefix(transition, .3s, webkit)
+    @include prefix(transition, .3s, webkit)
+    z-index: 1
     &:hover
         cursor: pointer
-        background-color: colors.$Primary-color-soft-cyan
+        background-color: $Primary-color-soft-cyan
     &:active
         background-color: #0B8E81
 
 .slider::-moz-range-thumb
     width: 40px
     height: 40px
-    background: colors.$Primary-color-strong-cyan url('../img/icon-slider.svg') no-repeat center center
+    background: $Primary-color-strong-cyan url('../img/icon-slider.svg') no-repeat center center
     border-radius: 50%
     box-shadow: 0px 8px 28px -6px rgba(16, 213, 194, 0.6), 0px 18px 88px -4px rgba(24, 39, 75, 0.14)
+    z-index: 1
+
+.slider:before
+    content: ''
+    position: absolute
+    left: 0
+    top: 0
+    height: 8px
+    width: 50%
+    background-color: $Primary-color-soft-cyan
+    border-radius: 4px
+    z-index: 0
+
+.plans-container
+    width: 100%
+    display: flex
+    justify-content: flex-end
+    gap: 8px
+    align-items: center
+
+.toggle
+    @include toggle
+    &:hover
+        background-color: $Primary-color-soft-cyan
+    .circle
+        @include circle
+    &.start
+        justify-content: flex-start
+    &.end
+        justify-content: flex-end
+
+.discount-container
+    @include discountContainer
+
+hr
+    border: 1px solid $toggle-light-blue
+    margin: 24px 0
+    position: relative
+    width: 180%
+    left: -40%
+
+footer
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+button
+    @include button
+    @include tButton-bold
+    &:hover
+        background-color: $dark-blue
+
+.on-mobile
+    display: none
+
+@media only screen and ( max-width: 580px )
+    .no-mobile
+        display: none
+    .on-mobile
+        display: inline-block
+    footer
+        text-align: center
+        flex-direction: column
+        gap: 8px
+    
+    .main-header
+        text-align: center
+        display: flex
+        justify-content: center
+
+    .price.on-mobile
+        width: 100%
+        display: flex
+        justify-content: center
+        text-align: center
+        margin-bottom: 16px
+
+    
