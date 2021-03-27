@@ -149,6 +149,7 @@ main .container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 0;
 }
 .main-header .price h2, .main-header .price p {
   display: inline;
